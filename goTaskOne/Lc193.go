@@ -1,9 +1,9 @@
 package Lc193
 
 func singleNumber(nums []int) int {
-    result := 0
-    for _, v := range nums {
-        result ^= v
-    }
-    return result
+	result := 0
+	for _, v := range nums {
+		result ^= v
+	}
+	return result
 }
