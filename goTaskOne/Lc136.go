@@ -1,4 +1,4 @@
-package Lc193
+package goTaskOne
 
 func singleNumber(nums []int) int {
 	result := 0
