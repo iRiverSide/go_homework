@@ -1,37 +1,22 @@
 package goTaskOne
 
-import "fmt"
-
-func main() {
-	arr := []int{1, 2, 3}
-	result := permute(arr)
-	fmt.Println("result = ", result)
-}
-
 func permute(nums []int) [][]int {
 	if len(nums) == 1 {
 		return [][]int{{nums[0]}}
 	}
-	result := [][]int{{}}
-	fmt.Println("nums = ", nums)
-
+	result := make([][]int, 0)
 	for i := range nums {
-		nextNums := []int{}
+		var nextNums []int
 		for j := range nums {
 			if i != j {
 				nextNums = append(nextNums, nums[j])
 			}
 		}
-		fmt.Printf("nextNums = %d, i = %d \n", nextNums, i)
-
-		result := permute(nextNums)
-		fmt.Println("after permute result = ", result)
-
-		for m := range result {
-			result[m] = append(result[m][:0], append([]int{nums[i]}, result[m][0:]...)...)
+		currResult := permute(nextNums)
+		for m := range currResult {
+			currResult[m] = append(currResult[m][:0], append([]int{nums[i]}, currResult[m][0:]...)...)
 		}
-		fmt.Println("after permute add result = ", result)
-
+		result = append(result, currResult...)
 	}
 	return result
 }
